@@ -13,10 +13,25 @@
 
   <!-- Latest jQuery -->
   <script src="http://code.jquery.com/jquery-2.2.1.js" integrity="sha256-eNcUzO3jsv0XlJLveFEkbB8bA7/CroNpNVk3XpmnwHc=" crossorigin="anonymous"></script>
+
+  <!-- My own css -->
+  <link rel="stylesheet" href="style.css">
   
   <title>The Great Internet Movie Comparator</title>
 </head>
 <body>
-  
+  <div class="container">
+    <div class="col-xs-12 text-center" id="headline">
+      <h1>The Great Internet Movie Comparator</h1>
+      <h2>Using the Comparator is simple! Choose what you're comparing (Movies or Cast/Crew), enter the titles of names you're looking for, and the Comparator will tell you what Movies or Cast/Crew are common between them!</h2>
+    </div>
+  </div>
+  <div class="container">
+    <div class="col-xs-12 text-center form-group" id="searchForm">
+      <label for="searchBox1">Enter your search terms here: </label>
+      <input type="text" id="searchBox1" placeholder="movie or name" />  <input type="text" id="searchBox2" placeholder="movie or name" /><button type="button" class="btn btn-success btn-lg btn-block">Search!</button>
+      </form>
+    </div>
+  </div>
 </body>
 </html>
