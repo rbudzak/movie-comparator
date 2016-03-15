@@ -26,6 +26,16 @@ label {
   font-size: 48px;
 }
 
-button {
-  font-size: 48px;
+.btn-xlarge {
+    padding: 18px 28px;
+    font-size: 48px; 
+    line-height: normal;
+    border-radius: 8px;
+}
+
+.footer {
+  position: fixed;
+  bottom: 60px;
+  /* Set the fixed height of the footer here */
+  height: 60px;
 }
