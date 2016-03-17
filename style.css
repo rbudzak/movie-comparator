@@ -55,6 +55,19 @@ ul {
   display: none;
 }
 
+#compare {
+  display: none;
+}
+
+.resultlist:hover {
+  font-size: larger;
+}
+
+.selected {
+  font-weight: bold;
+}
+
+/*Got this from a button generator site. ngl I don't know most of what's going on here.*/
 .btn-oldstyle {
   background-color: #D9CBB2;
   border-color: #D9CBB2;
@@ -101,3 +114,4 @@ ul {
   background-color: #D9CBB2;
   border-color: #D9CBB2;
 }
+
