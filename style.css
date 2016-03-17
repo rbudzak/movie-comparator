@@ -12,7 +12,7 @@ h2 {
   color: white;
 }
 
-#headline {
+.darkbox {
   background: rgba(0, 0, 0, .5);
   border-radius: 25px
 }
@@ -33,9 +33,71 @@ label {
     border-radius: 8px;
 }
 
-.footer {
+.btmbar {
+  color: white;
   position: fixed;
-  bottom: 60px;
-  /* Set the fixed height of the footer here */
+  text-align: center;
+  vertical-align: center;
+  bottom: 0px;
+  right: 0px;
   height: 60px;
+  background-color: black;
+}
+
+
+
+ul {
+  color: white;
+  font-size: 24px;
+}
+
+#results {
+  display: none;
+}
+
+.btn-oldstyle {
+  background-color: #D9CBB2;
+  border-color: #D9CBB2;
+  color: #fff;
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+  background-color: #d2c2a4;
+  background-image: -moz-linear-gradient(top,#D9CBB2,#c8b490);
+  background-image: -webkit-gradient(linear,0 0,0 100%,from(#D9CBB2),to(#c8b490));
+  background-image: -webkit-linear-gradient(top,#D9CBB2,#c8b490);
+  background-image: -o-linear-gradient(top,#D9CBB2,#c8b490);
+  background-image: linear-gradient(to bottom,#D9CBB2,#c8b490);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffd9cbb2', endColorstr='#ffc8b38f', GradientType=0);
+  border-color: #c8b490 #c8b490 #af915d;
+  border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+}
+.btn-oldstyle:hover,
+.btn-oldstyle:focus {
+  text-decoration: none;
+  background-position: 0 -15px;
+  -webkit-transition: background-position .1s linear;
+  -moz-transition: background-position .1s linear;
+  -o-transition: background-position .1s linear;
+  transition: background-position .1s linear;
+}
+.btn-oldstyle:hover,
+.btn-oldstyle:focus {
+  background-color: #c8b490;
+}
+.btn-oldstyle:active,
+.btn-oldstyle.active,
+.btn-oldstyle.active:hover {
+  background-color: #d1bfa1;
+  border-color: #c8b490;
+}
+.btn-oldstyle.disabled:hover,
+.btn-oldstyle.disabled:focus,
+.btn-oldstyle.disabled:active,
+.btn-oldstyle.disabled.active,
+.btn-oldstyle[disabled] .btn-oldstyle:hover,
+.btn-oldstyle[disabled] .btn-oldstyle:focus,
+.btn-oldstyle[disabled] .btn-oldstyle:active,
+.btn-oldstyle[disabled] .btn-oldstyle.active {
+  background-color: #D9CBB2;
+  border-color: #D9CBB2;
 }

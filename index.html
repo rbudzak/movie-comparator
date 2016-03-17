@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <!-- Latest jQuery -->
+  <script src="http://code.jquery.com/jquery-2.2.1.js" integrity="sha256-eNcUzO3jsv0XlJLveFEkbB8bA7/CroNpNVk3XpmnwHc=" crossorigin="anonymous"></script>
+
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   
@@ -11,37 +14,66 @@
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
-  <!-- Latest jQuery -->
-  <script src="http://code.jquery.com/jquery-2.2.1.js" integrity="sha256-eNcUzO3jsv0XlJLveFEkbB8bA7/CroNpNVk3XpmnwHc=" crossorigin="anonymous"></script>
 
   <!-- My own css -->
   <link rel="stylesheet" href="style.css">
-  
+  <script src="script.js"></script>
   <title>The Great Internet Movie Comparator</title>
 </head>
 <body>
-  <div class="container">
-    <br><br>    
-    <div class="col-xs-12 text-center" id="headline">
-      <h1>The Great Internet Movie Comparator</h1>
-      <h2>Using the Comparator is simple! Choose what you're comparing (Movies or Cast/Crew), enter the titles of names you're looking for, and the Comparator will tell you what Movies or Cast/Crew are common between them!</h2>
+  <!-- This is this first page -->
+  <div id='main'>
+    <div class="container">
+      <br><br>    
+      <div class="col-xs-12 text-center darkbox">
+        <h1>The Great Internet<br>Movie Comparator</h1>
+        <h2>Using the Comparator is simple! Choose what you're comparing (Movies or Cast/Crew), enter the titles of names you're looking for, and the Comparator will tell you what Movies or Cast/Crew are common between them!</h2>
+      </div>
+    </div>
+    <div class="container">
+      <div class="col-xs-12 text-center form-group" id="searchForm">
+        <label for="searchBox1">Enter your search terms here: </label>
+        <input type="text" id="searchBox1" placeholder="movie or name" />  <input type="text" id="searchBox2" placeholder="movie or name" /><br><br><button type="button" form="searchForm" class="btn btn-xlarge btn-block btn-oldstyle" id="srchBtn">Search!</button>
+      </div>
     </div>
   </div>
-  <div class="container">
-    <div class="col-xs-12 text-center form-group" id="searchForm">
-      <label for="searchBox1">Enter your search terms here: </label>
-      <input type="text" id="searchBox1" placeholder="movie or name" />  <input type="text" id="searchBox2" placeholder="movie or name" /><br><br><button type="button" class="btn btn-success btn-xlarge btn-block">Search!</button>
+  <!-- This is the search results page -->
+  <div id="results">
+    <div class="container">
+      <br><br>    
+      <div class="col-xs-12 text-center darkbox">
+        <h1>Search Results</h1>
+        <h2>Just pick one result from each column and you'll find out how they match up!</h2>
+      </div>
+    </div>
+    <br><br>
+    <div class="container-fluid">
+      <div class="col-xs-1"></div>
+      <div class="col-xs-4 darkbox">
+        <ul id="results1">
+<!--         <li><h2>Possibilities for Movie Name</h2></li>
+        <li>That one movie (2006)</li>
+        <li>That other movie (1994)</li>
+        <li>Some movie you don't want (2013)</li> -->
+        </ul>
+      </div>
+      <div class="col-xs-2"></div>
+      <div class="col-xs-4 darkbox">
+        <ul id="results2">
+          <li><h2>Possibilities for Movie Name</h2></li>
+          <li>That one movie (2006)</li>
+          <li>That other movie (1994)</li>
+          <li>Some movie you don't want (2013)</li>
+        </ul>
+      </div>
+      <div class="col-xs-1"></div>
     </div>
   </div>
-  <div class="container">
-    <div class="col-xs-2"></div>
-    <div class="col-xs-4"></div>
-    <div class="col-xs-4"></div>
-    <div class="col-xs-2"></div>
-  </div>
+
+<!-- This is the footer, and is always displayed to properly credit TMdb -->
   <div class="container-fluid">
-    <div class="col-xs-12 text-center footer">
-      <h1>Powered by TMdb</h1>
+    <div class="col-xs-12 btmbar">
+      <a href="http://themoviedb.org"><h3>Powered by TMdb</h3></a>
     </div>
   </div>
 </body>
