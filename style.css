@@ -67,6 +67,10 @@ ul {
   font-weight: bold;
 }
 
+.titleList {
+  font-size: smaller;
+}
+
 /*Got this from a button generator site. ngl I don't know most of what's going on here.*/
 .btn-oldstyle {
   background-color: #D9CBB2;

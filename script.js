@@ -5,6 +5,8 @@ $(document).ready(function(){
   var objCast2 = [];
   var objCrew1 = [];
   var objCrew2 = [];
+  var movieTag1;
+  var movieTag2;
   console.log('sanity check!');
   $('#srchBtn').on('click', function(e){
     console.log('clicked!');
@@ -12,14 +14,16 @@ $(document).ready(function(){
       $.get("http://api.themoviedb.org/3/search/movie", {api_key: "a90909dd0e8c2686878fe2e657e00f17", query: $('#searchBox1').val()}, function (response){ 
           console.log(response);
           response.results.forEach(function(val){
-            $('#results1').append('<li class="resultlist" data-id="' + val.id + '" data-titleyear="' + val.title + '(' + val.release_date.substr(0,4) + ')">' + val.title + ' (' + val.release_date.substr(0,4) + ')</li>');
+            movieTag1 = val.title + " (" + val.release_date.substr(0,4) + ")";
+            $('#results1').append('<li class="resultlist" data-id="' + val.id + '" data-titleYear="' + movieTag1 + '">' + movieTag1 + '</li>');
           });
         }, "json");
 
         $.get("http://api.themoviedb.org/3/search/movie", {api_key: "a90909dd0e8c2686878fe2e657e00f17", query: $('#searchBox2').val()}, function (response){ 
           console.log(response);
           response.results.forEach(function(val){
-            $('#results2').append('<li class="resultlist" data-id="' + val.id + '" data-titleyear="' + val.title + '(' + val.release_date.substr(0,4) + ')">' + val.title + ' (' + val.release_date.substr(0,4) + ')</li>');
+            movieTag2 = val.title + " (" + val.release_date.substr(0,4) + ")";
+            $('#results2').append('<li class="resultlist" data-id="' + val.id + '" data-titleYear="' + movieTag2 + '">' + movieTag2 + '</li>');
           });
         }, "json");        
       $('#results').fadeIn('slow');
@@ -30,6 +34,7 @@ $(document).ready(function(){
     $('#results1').children('.selected').removeClass('selected');
     $(e.target).addClass('selected');
     movieId1 = $(e.target).attr('data-id');
+    movieTag1 = $(e.target).attr('data-titleYear');
     console.log(movieId1);
   });
 
@@ -37,34 +42,24 @@ $(document).ready(function(){
     $('#results2').children('.selected').removeClass('selected');
     $(e.target).addClass('selected');
     movieId2 = $(e.target).attr('data-id');
+    movieTag2 = $(e.target).attr('data-titleYear');
     console.log(movieId2);
   });
 
   $('#btnCompare').on('click', function (e){
     $('#results').fadeOut('slow', function (e){
+        $(".comphdr").text('Here\'s all the common cast and crew we could find between ' + movieTag1 + ' and ' + movieTag2);
         $.get("http://api.themoviedb.org/3/movie/" + movieId1 +"/credits", {api_key: "a90909dd0e8c2686878fe2e657e00f17"}, function (response){ 
           console.log(response);
           objCast1 = response.cast;
           objCrew1 = response.crew;
-          // response.cast.forEach(function(val){
-          //   $('#compList').append('<li>' + val.name + '</li>');
-          // });
-          // response.crew.forEach(function(val){
-          //   $('#compList').append('<li>' + val.name + '</li>');
-          // });
         }, "json");
         $.get("http://api.themoviedb.org/3/movie/" + movieId2 +"/credits", {api_key: "a90909dd0e8c2686878fe2e657e00f17"}, function (response){ 
           console.log(response);
           objCast2 = response.cast;
           objCrew2 = response.crew;
-          // response.cast.forEach(function(val){
-          //   $('#compList').append('<li>' + val.name + '</li>');
-          // });
-          // response.crew.forEach(function(val){
-          //   $('#compList').append('<li>' + val.name + '</li>');
-          // });
-          castComp(objCast1, objCast2);
-          crewComp(objCrew1, objCrew2);         
+          castComp(objCast1, objCast2, movieTag1, movieTag2);
+          crewComp(objCrew1, objCrew2, movieTag1, movieTag2);         
         }, "json");
       $('#compare').fadeIn('slow');
     });
@@ -74,25 +69,23 @@ $(document).ready(function(){
 
 });
 
-function castComp(arr1, arr2){
+function castComp(arr1, arr2, tag1, tag2){
   console.log("comparing");
   arr1.forEach(function(val){
     arr2.forEach(function(val2){
       if (val.id === val2.id){
-        $('#compList').append('<li>' + val.name + ' - ' + val.character + ', ' + val2.character + '</li>');
-        console.log('match found for id ' + val.id +", " + val.name + ".");
+        $('#compList').append('<li>' + val.name + '<ul class="titleList"><li>' + val.character + ' [' + tag1 + ']</li><li> ' + val2.character + ' [' + tag2 + ']</li></ul></li>');
       }
     });
   });
 }
 
-function crewComp(arr1, arr2){
+function crewComp(arr1, arr2, tag1, tag2){
   console.log("comparing");
   arr1.forEach(function(val, idx){
     arr2.forEach(function(val2, idx){
       if (val.id === val2.id){
-        $('#compList').append('<li>' + val.name + ' - ' + val.job + ', ' + val2.job + '</li>');
-        console.log('match found for id ' + val.id +", " + val.name + ".");
+        $('#compList').append('<li>' + val.name + '<ul class="titleList"><li>' + val.job + ' [' + tag1 + ']</li><li> ' + val2.job + ' [' + tag2 + ']</li></ul></li>');
         arr2.splice(idx, 1);
       }
     });
