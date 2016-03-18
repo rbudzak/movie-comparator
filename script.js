@@ -1,6 +1,10 @@
 $(document).ready(function(){
   var movieId1;
   var movieId2;
+  var objCast1 = [];
+  var objCast2 = [];
+  var objCrew1 = [];
+  var objCrew2 = [];
   console.log('sanity check!');
   $('#srchBtn').on('click', function(e){
     console.log('clicked!');
@@ -8,14 +12,14 @@ $(document).ready(function(){
       $.get("http://api.themoviedb.org/3/search/movie", {api_key: "a90909dd0e8c2686878fe2e657e00f17", query: $('#searchBox1').val()}, function (response){ 
           console.log(response);
           response.results.forEach(function(val){
-            $('#results1').append('<li class="resultlist" data-id="' + val.id + '">' + val.title + ' (' + val.release_date.substr(0,4) + ')</li>');
+            $('#results1').append('<li class="resultlist" data-id="' + val.id + '" data-titleyear="' + val.title + '(' + val.release_date.substr(0,4) + ')">' + val.title + ' (' + val.release_date.substr(0,4) + ')</li>');
           });
         }, "json");
 
         $.get("http://api.themoviedb.org/3/search/movie", {api_key: "a90909dd0e8c2686878fe2e657e00f17", query: $('#searchBox2').val()}, function (response){ 
           console.log(response);
           response.results.forEach(function(val){
-            $('#results2').append('<li class="resultlist" data-id="' + val.id + '">' + val.title + ' (' + val.release_date.substr(0,4) + ')</li>');
+            $('#results2').append('<li class="resultlist" data-id="' + val.id + '" data-titleyear="' + val.title + '(' + val.release_date.substr(0,4) + ')">' + val.title + ' (' + val.release_date.substr(0,4) + ')</li>');
           });
         }, "json");        
       $('#results').fadeIn('slow');
@@ -40,13 +44,27 @@ $(document).ready(function(){
     $('#results').fadeOut('slow', function (e){
         $.get("http://api.themoviedb.org/3/movie/" + movieId1 +"/credits", {api_key: "a90909dd0e8c2686878fe2e657e00f17"}, function (response){ 
           console.log(response);
+          objCast1 = response.cast;
+          objCrew1 = response.crew;
           response.cast.forEach(function(val){
             $('#compList').append('<li>' + val.name + '</li>');
           });
           response.crew.forEach(function(val){
             $('#compList').append('<li>' + val.name + '</li>');
           });
-        }, "json");      
+        }, "json");
+        $.get("http://api.themoviedb.org/3/movie/" + movieId2 +"/credits", {api_key: "a90909dd0e8c2686878fe2e657e00f17"}, function (response){ 
+          console.log(response);
+          objCast2 = response.cast;
+          objCrew2 = response.crew;
+          response.cast.forEach(function(val){
+            $('#compList').append('<li>' + val.name + '</li>');
+          });
+          response.crew.forEach(function(val){
+            $('#compList').append('<li>' + val.name + '</li>');
+          });
+          objComp(objCast1, objCast2);         
+        }, "json");
       $('#compare').fadeIn('slow');
     });
   });
@@ -54,3 +72,13 @@ $(document).ready(function(){
 
 
 });
+
+function objComp(arr1, arr2){
+  console.log("comparing");
+  arr1.forEach(function(val){
+    arr2.forEach(function(val2){
+      if (val.id === val2.id) console.log('match found for id ' + val.id);
+    });
+  });
+}
+
